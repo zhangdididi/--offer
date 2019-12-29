@@ -47,3 +47,25 @@ public void reOrderArray(int [] array) {
         array[i] = arr[i];
     }
 }
+
+
+//向前移动奇数
+public void reOrderArray(int [] array) {
+    for (int i = 1; i < array.length; i++) {
+        if (array[i] % 2 != 0) {
+            //如果是奇数，就向前移动
+            int index = i;
+            while (index > 0) {
+                //大于0时，前一个数如果是偶数就交换
+                if (array[index - 1] % 2 == 0) {
+                    int temp = array[index - 1];
+                    array[index - 1] = array[index];
+                    array[index] = temp;
+                } else {
+                    break;
+                }
+                index--;
+            }
+        }
+    }
+}
