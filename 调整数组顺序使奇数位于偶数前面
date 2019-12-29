@@ -5,6 +5,7 @@
 所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。
 */
 
+//两个数组数组列表保存奇数和偶数
 import java.util.List;
 import java.util.ArrayList;
 public class Solution {
@@ -25,5 +26,24 @@ public class Solution {
                 array[i] = list2.get(i - list1.size());
             }
         }
+    }
+}
+
+//临时数组
+public void reOrderArray(int [] array) {
+    int[] arr = new int[array.length];
+    int index = 0;
+    for (int i = 0; i < array.length; i++) {
+        if (array[i] % 2 != 0) {
+            arr[index++] = array[i];
+        }
+    }
+    for (int i = 0; i < array.length; i++) {
+        if (array[i] % 2 == 0) {
+            arr[index++] = array[i];
+        }
+    }
+    for (int i = 0; i < array.length; i++) {
+        array[i] = arr[i];
     }
 }
