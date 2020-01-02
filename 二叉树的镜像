@@ -1,0 +1,26 @@
+//迭代思路
+import java.util.Stack;
+public class Solution {
+    public void Mirror(TreeNode root) {
+        if (root == null) return;
+        if (root.left == null && root.right == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode top = stack.pop();
+            if (top.left != null || top.right != null) {
+                TreeNode temp = top.left;
+                top.left = top.right;
+                top.right = temp;
+            }
+            if (top.left != null) {
+                stack.push(top.left);
+            }
+            if (top.right != null) {
+                stack.push(top.right);
+            }
+        }
+    }
+}
