@@ -5,15 +5,26 @@
 （注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 */
 
+/*
+public class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+*/
 
 import java.util.HashMap;
 public class Solution {
     public RandomListNode Clone(RandomListNode pHead) {
-        HashMap<ListNode, ListNode> hash = new HashMap<>();
-        for (ListNode cur = pHead; cur != null; cur = cur.next) {
-            hash.put(cur, new ListNode(cur.val, null, null));
+        HashMap<RandomListNode, RandomListNode> hash = new HashMap<>();
+        for (RandomListNode cur = pHead; cur != null; cur = cur.next) {
+            hash.put(cur, new RandomListNode(cur.label));
         }
-        for (ListNode cur = pHead; cur != null; cur = cur.next) {
+        for (RandomListNode cur = pHead; cur != null; cur = cur.next) {
             hash.get(cur).next = hash.get(cur.next);
             hash.get(cur).random = hash.get(cur.random);
         }
