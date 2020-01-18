@@ -1,0 +1,40 @@
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if (root1 == null || root2 == null) {
+            return false;
+        }
+        boolean ret = false;
+        if (root1.val == root2.val) {
+            ret = isSameTree(root1, root2);
+        }
+        if (!ret) {
+            ret = HasSubtree(root1.left, root2);
+        }
+        if (!ret) {
+            ret = HasSubtree(root1.right, root2);
+        }
+        return ret;
+    }
+    
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (q == null) return true;
+        if (p == null) return false;
+        if (p.val != q.val) {
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+}
