@@ -27,14 +27,19 @@ public class Solution {
             return;
         }
         Stack<TreeNode> stack = new Stack<>();
+        //先将根结点放入栈内
         stack.push(root);
         while (!stack.isEmpty()) {
+            //取出栈顶元素
             TreeNode top = stack.pop();
             if (top.left != null || top.right != null) {
+                //只要这个栈顶元素，也就是一个根结点他有左右结点
+                //那就交换他的左右结点。
                 TreeNode temp = top.left;
                 top.left = top.right;
                 top.right = temp;
             }
+            //然后再把这个栈顶元素的左右结点放入栈中
             if (top.left != null) {
                 stack.push(top.left);
             }
