@@ -1,0 +1,19 @@
+public class Solution {
+    public boolean IsBalanced_Solution(TreeNode root) {
+        if (root == null) return true;
+        if (maxDepth(root.left) - maxDepth(root.right) > 1 || maxDepth(root.right) - maxDepth(root.left) > 1) {
+            return false;
+        }
+        return true;
+    }
+        javascript:void(0);
+    private int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
+    }
+}
