@@ -1,3 +1,7 @@
+/*
+判断一个二叉树是否为平衡二叉树
+*/
+
 public class Solution {
     public boolean IsBalanced_Solution(TreeNode root) {
         if (root == null) return true;
