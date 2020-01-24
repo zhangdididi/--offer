@@ -52,3 +52,16 @@ public class Solution {
         return count;
     }
 }
+
+//哈希表
+import java.util.HashMap;
+public class Solution {
+    public int GetNumberOfK(int [] array , int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : array) {
+            int count = map.getOrDefault(num, 0);
+            map.put(num, count + 1);
+        }
+        return map.containsKey(k) ? map.get(k) : 0;
+    }
+}
