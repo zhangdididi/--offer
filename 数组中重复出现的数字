@@ -5,6 +5,7 @@
 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。
 */
 
+//哈希表
 import java.util.HashMap;
 public class Solution {
     public boolean duplicate(int numbers[],int length,int [] duplication) {
@@ -24,6 +25,7 @@ public class Solution {
     }
 }
 
+//HashSet
 import java.util.HashSet;
 public class Solution {
     public boolean duplicate(int numbers[],int length,int [] duplication) {
@@ -40,7 +42,7 @@ public class Solution {
     }
 }
 
-
+//遍历两次数组
 public class Solution {
     public boolean duplicate(int numbers[],int length,int [] duplication) {
         for (int i = 0; i < length - 1; i++) {
