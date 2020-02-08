@@ -3,6 +3,7 @@
 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 */
 
+//插入方法
 public class Solution {
     public String replaceSpace(StringBuffer str) {
     	for (int i = 0; i < str.length(); i++) {
@@ -12,6 +13,36 @@ public class Solution {
                 str.insert(i, '2');
                 i++;
                 str.insert(i, '0');
+            }
+        }
+        return str.toString();
+    }
+}
+
+
+//延长字符串长度
+public class Solution {
+    public String replaceSpace(StringBuffer str) {
+    	int spaceNum = 0;
+        int len = str.length();
+        //先遍历一次字符串，查找有几个空格
+        for (int i = 0; i < len; i++) {
+            if (str.charAt(i) == ' ') {
+                spaceNum++;
+            }
+        }
+        int newLen = len + 2 * spaceNum;
+        int indexOfLen = len - 1;
+        int indexOfNewLen = newLen - 1;
+        str.setLength(newLen);
+        while (indexOfLen >= 0 && indexOfNewLen > indexOfLen) {
+            if (str.charAt(indexOfLen) == ' ') {
+                str.setCharAt(indexOfNewLen--, '0');
+                str.setCharAt(indexOfNewLen--, '2');                
+                str.setCharAt(indexOfNewLen--, '%');
+                indexOfLen--;
+            } else {
+                str.setCharAt(indexOfNewLen--, str.charAt(indexOfLen--));
             }
         }
         return str.toString();
