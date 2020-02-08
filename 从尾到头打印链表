@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+import java.util.Stack;
+public class Solution {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<ListNode> stack = new Stack<>();
+        ListNode curr = listNode;
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.next;
+        }
+        while (!stack.isEmpty()) {
+            list.add(stack.pop().val);
+        }
+        return list;
+    }
+}
