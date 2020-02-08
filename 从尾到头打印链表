@@ -15,3 +15,18 @@ public class Solution {
         return list;
     }
 }
+
+
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        if (listNode != null) {
+            if (listNode.next != null) {
+                printListFromTailToHead(listNode.next);
+            }
+            list.add(listNode.val);
+        }
+        return list;
+    }
+}
