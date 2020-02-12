@@ -1,0 +1,30 @@
+/*
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。
+求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
+*/
+
+//循环
+public class Solution {
+    public int JumpFloor(int target) {
+        if (target == 1) return 1;
+        if (target == 2) return 2;
+        int jumpFloorLastOne = 2;
+        int jumpFloorLastTwo = 1;
+        int jumpFloor = 0;
+        for (int i = 3; i <= target; i++) {
+            jumpFloor = jumpFloorLastOne + jumpFloorLastTwo;
+            jumpFloorLastTwo = jumpFloorLastOne;
+            jumpFloorLastOne = jumpFloor;
+        }
+        return jumpFloor;
+    }
+}
+
+//递归
+public class Solution {
+    public int JumpFloor(int target) {
+        if (target == 1) return 1;
+        if (target == 2) return 2;
+        return JumpFloor(target - 1) + JumpFloor(target - 2);
+    }
+}
