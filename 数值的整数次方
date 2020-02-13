@@ -5,20 +5,33 @@
 保证base和exponent不同时为0
 */
 
+//循环
 public class Solution {
     public double Power(double base, int exponent) {
-        double res = 1;
-        for (int i = 0; i < Math.abs(exponent); i++) {
-            res *= base;
+        if (same(base, 0.0) && exponent < 0) {
+            throw new RuntimeException("digit is error!");
+        }
+        int absExponent = Math.abs(exponent);
+        double result = 1.0;
+        for (int i = 0; i < absExponent; i++) {
+            result *= base;
         }
         if (exponent < 0) {
-            res = 1 / res;
+            result = 1.0 / result;
         }
-        return res;
+        return result;
+  }
+    
+    private boolean same(double x, double y) {
+        if ((x - y) < 0.0000001 && (x - y) > -0.0000001) {
+            //如果两个数的差值范围非常小，则表示这两个数相等
+            return true;
+        }
+        return false;
     }
 }
 
-
+//递归
 public class Solution {
     public double Power(double base, int exponent) {
         int n = Math.abs(exponent);
