@@ -25,29 +25,28 @@ public class Solution {
 import java.util.Stack;
 public class Solution {
     public void Mirror(TreeNode root) {
+        //如果树为空或只存在一个根结点，就直接返回，退出方法
         if (root == null) return;
-        if (root.left == null && root.right == null) {
-            return;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        //先将根结点放入栈内
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            //取出栈顶元素
-            TreeNode top = stack.pop();
-            if (top.left != null || top.right != null) {
-                //只要这个栈顶元素，也就是一个根结点他有左右结点
-                //那就交换他的左右结点。
-                TreeNode temp = top.left;
-                top.left = top.right;
-                top.right = temp;
+        if (root.left == null && root.right == null) return;
+        //创建一个栈，先将根结点放入到栈中
+        Stack<TreeNode> stackOfTree = new Stack<>();
+        stackOfTree.push(root);
+        //当栈内元素不为空时，就进入循环
+        while (!stackOfTree.isEmpty()) {
+            //先取出栈顶元素，也就是根结点
+            TreeNode topOfStack = stackOfTree.pop();
+            //如果栈顶元素结点的左子结点和右子节点不都为空时，就交换两个节点
+            if (topOfStack.left != null || topOfStack.right != null) {
+                TreeNode tempNode = topOfStack.left;
+                topOfStack.left = topOfStack.right;
+                topOfStack.right = tempNode;
             }
-            //然后再把这个栈顶元素的左右结点放入栈中
-            if (top.left != null) {
-                stack.push(top.left);
+            //交换完成之后，再分别把栈顶元素结点的左右子节点分别插入到栈中
+            if (topOfStack.left != null) {
+                stackOfTree.push(topOfStack.left);
             }
-            if (top.right != null) {
-                stack.push(top.right);
+            if (topOfStack.right != null) {
+                stackOfTree.push(topOfStack.right);
             }
         }
     }
