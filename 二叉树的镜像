@@ -5,13 +5,16 @@
 //递归思路
 public class Solution {
     public void Mirror(TreeNode root) {
+        //如果根结点为空，就直接返回，退出方法
         if (root == null) return;
-        if (root.left == null && root.right == null) {
-            return;
-        }
-        TreeNode temp = root.left;
+        //如果左右子树都为空的话，也不用做调整，直接返回
+        if (root.left == null && root.right == null) return;
+        //此时根结点是有左子树和右子树不都为空
+        //对左右子结点进行交换
+        TreeNode tempNode = root.left;
         root.left = root.right;
-        root.right = temp;
+        root.right = tempNode;
+        //再递归处理左子树和右子树
         Mirror(root.left);
         Mirror(root.right);
     }
