@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> printMatrix(int [][] matrix) {
+        //先创建返回的队列
+        ArrayList<Integer> list = new ArrayList<>();
+        //如果二维数组不满足矩阵的条件，就直接返回一个空的队列
+        if (matrix == null) return list;
+        //创建start变量，来保存每一圈开始坐标的横纵坐标
+        int start = 0;
+        //进入循环，每次循环都遍历保存一圈元素
+        while (start * 2 < matrix.length && start * 2 < matrix[0].length) {
+            printCycle(matrix, list, start);
+            //执行完毕需要进入内层一圈，更新起始点的坐标
+            ++start;
+        }
+        return list;
+    }
+    
+    //打印一圈方法
+    private static void printCycle(int[][] matrix, ArrayList<Integer> list, int start) {
+        //首先得到一圈元素的结尾的横纵坐标,横坐标表示endX，纵坐标表示endY
+        int endX = matrix[0].length - 1 - start;
+        int endY = matrix.length - 1 - start;
+        //执行第一步
+        for (int i = start; i <= endX; i++) {
+            //第一步横坐标不变
+            list.add(matrix[start][i]);
+        }
+        //如果结尾行数大于起始行数，就执行第二步
+        if (endY > start) {
+            for (int i = start + 1; i <= endY; i++) {
+                //第二步纵坐标不变
+                list.add(matrix[i][endX]);
+            }
+        }
+        //如果结尾行数大于其实行数并且结尾列数大于起始列数，可以执行第三步
+        if (endY > start && endX > start) {
+            for (int i = endX - 1; i >= start; i--) {
+                //第四步在结尾行不变，只变纵坐标
+                list.add(matrix[endY][i]);
+            }
+        }
+        //如果结尾行数与其实行数之间有三行存在，并且结尾列数大于起始列数，就可以执行第四步
+        if (endY - start > 1 && endX > start) {
+            for (int i = endY - 1; i >= start + 1; i--) {
+                //第四步纵坐标不变，横坐标向上减小
+                list.add(matrix[i][start]);
+            }
+        }
+    }
+}
