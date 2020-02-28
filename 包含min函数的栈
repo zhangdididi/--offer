@@ -1,0 +1,41 @@
+import java.util.Stack;
+
+public class Solution {
+
+    //创建数据栈
+    public static Stack<Integer> stackOfData = new Stack<>();
+    //创建辅助栈
+    public static Stack<Integer> stackOfHelper = new Stack<>();
+    
+    public void push(int node) {
+        //先将新的数据压入数据栈中
+        stackOfData.push(node);
+        //如果辅助栈为空，或者这个数小于最小值，就直接压入辅助栈
+        //否则就将辅助栈顶元素也就是最小元素压入辅助栈
+        if (stackOfHelper.isEmpty()|| node < stackOfHelper.top()) {
+            stackOfHelper.push(node);
+        } else {
+            stackOfHelper.push(stackOfHelper.top());
+        }
+    }
+    
+    public void pop() {
+        //如果两个栈为空，就直接返回
+        if (stackOfData.size() > 0 && stackOfHelper.size() > 0) {
+            stackOfData.pop();
+            stackOfHelper.pop();
+        }
+    }
+    
+    public int top() {
+        if (stackOfData.size() > 0) {
+            return stackOfData.top();
+        }
+    }
+    
+    public int min() {
+        if (stackOfHelper.size() > 0) {
+            return stackOfHelper.top();
+        }
+    }
+}
