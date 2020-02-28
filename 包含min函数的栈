@@ -12,7 +12,7 @@ public class Solution {
         stackOfData.push(node);
         //如果辅助栈为空，或者这个数小于最小值，就直接压入辅助栈
         //否则就将辅助栈顶元素也就是最小元素压入辅助栈
-        if (stackOfHelper.isEmpty()|| node < stackOfHelper.top()) {
+        if (stackOfHelper.isEmpty()|| node < stackOfHelper.peek()) {
             stackOfHelper.push(node);
         } else {
             stackOfHelper.push(stackOfHelper.top());
