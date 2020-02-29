@@ -3,9 +3,9 @@ import java.util.Stack;
 public class Solution {
 
     //创建数据栈
-    public static Stack<Integer> stackOfData = new Stack<>();
+    public Stack<Integer> stackOfData = new Stack<Integer>();
     //创建辅助栈
-    public static Stack<Integer> stackOfHelper = new Stack<>();
+    public Stack<Integer> stackOfHelper = new Stack<Integer>();
     
     public void push(int node) {
         //先将新的数据压入数据栈中
@@ -15,7 +15,7 @@ public class Solution {
         if (stackOfHelper.isEmpty()|| node < stackOfHelper.peek()) {
             stackOfHelper.push(node);
         } else {
-            stackOfHelper.push(stackOfHelper.top());
+            stackOfHelper.push(stackOfHelper.peek());
         }
     }
     
@@ -29,13 +29,14 @@ public class Solution {
     
     public int top() {
         if (stackOfData.size() > 0) {
-            return stackOfData.top();
+            return stackOfData.peek();
         }
     }
     
     public int min() {
-        if (stackOfHelper.size() > 0) {
-            return stackOfHelper.top();
+        if (!stackOfHelper.isEmpty()) {
+            return stackOfHelper.peek();
         }
+        throw new RuntimeExpection("Stack is empty!!!");
     }
 }
