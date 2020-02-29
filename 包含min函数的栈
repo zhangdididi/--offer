@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.lang.Exception;
 
 public class Solution {
 
@@ -31,12 +32,13 @@ public class Solution {
         if (stackOfData.size() > 0) {
             return stackOfData.peek();
         }
+        return -1;
     }
     
     public int min() {
-        if (!stackOfHelper.isEmpty()) {
-            return stackOfHelper.peek();
+        if (stackOfHelper.isEmpty()) {
+            return -1;
         }
-        throw new RuntimeExpection("Stack is empty!!!");
+        return stackOfHelper.peek();
     }
 }
