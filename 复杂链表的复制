@@ -20,14 +20,18 @@ public class RandomListNode {
 import java.util.HashMap;
 public class Solution {
     public RandomListNode Clone(RandomListNode pHead) {
+        //创建哈希表来存储原链表结点和复制链表的结点
         HashMap<RandomListNode, RandomListNode> hash = new HashMap<>();
+        //将原链表和复制相同值的链表的结点对应作为键值对
         for (RandomListNode cur = pHead; cur != null; cur = cur.next) {
             hash.put(cur, new RandomListNode(cur.label));
         }
+        //遍历取出每一个复制链表的结点，给next和random结点赋值
         for (RandomListNode cur = pHead; cur != null; cur = cur.next) {
             hash.get(cur).next = hash.get(cur.next);
             hash.get(cur).random = hash.get(cur.random);
         }
+        返回复制链表的头结点
         return hash.get(pHead);
     }
 }
