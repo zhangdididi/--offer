@@ -22,7 +22,6 @@ public class Solution {
                 stack2.push(temp);
             }
         }
-        int head = stack2.pop();
-        return head;
+        return stack2.pop();
     }
 }
