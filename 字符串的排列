@@ -1,0 +1,36 @@
+import java.util.*;
+public class Solution {
+    
+    private static ArrayList<String> list = new ArrayList<>();
+    
+    public ArrayList<String> Permutation(String str) {
+        if (str == null || str.length() == 0) {
+            return list;
+        }
+        StringBuilder stringBuilder = new StringBuilder(str); 
+        list.clear();
+        internalPermutation(stringBuilder, 0);
+        Collections.sort(list);
+        return list;
+    }
+    
+    private static void internalPermutation(StringBuilder str, int begin) {
+        if (begin == str.length()) {
+            list.add(str.toString());
+        } else {
+            HashSet<Character> charSet = new HashSet<>();
+            for (int i = begin; i < str.length(); i++) {
+                if (i == begin || !charSet.contains(str.charAt(i))) {
+                    charSet.add(str.charAt(i));
+                    char temp = str.charAt(i);
+                    str.setCharAt(i, str.charAt(begin));
+                    str.setCharAt(begin, temp);
+                    internalPermutation(str, begin + 1);
+                    temp = str.charAt(begin);
+                    str.setCharAt(begin, str.charAt(i));
+                    str.setCharAt(i, temp);
+                }
+            }
+        }
+    }
+}
