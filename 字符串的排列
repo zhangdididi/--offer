@@ -22,15 +22,17 @@ public class Solution {
             for (int i = begin; i < str.length(); i++) {
                 if (i == begin || !charSet.contains(str.charAt(i))) {
                     charSet.add(str.charAt(i));
-                    char temp = str.charAt(i);
-                    str.setCharAt(i, str.charAt(begin));
-                    str.setCharAt(begin, temp);
+                    swap(str, i, begin);
                     internalPermutation(str, begin + 1);
-                    temp = str.charAt(begin);
-                    str.setCharAt(begin, str.charAt(i));
-                    str.setCharAt(i, temp);
+                    swap(str, begin, i);
                 }
             }
         }
+    }
+    
+    private static void swap(StringBuilder str, int x, int y) {
+        char temp = str.charAt(x);
+        str.setCharAt(x, str.charAt(y));
+        str.setCharAt(y, temp);
     }
 }
