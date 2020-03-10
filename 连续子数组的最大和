@@ -1,0 +1,26 @@
+public class Solution {
+    public int FindGreatestSumOfSubArray(int[] array) {
+        //如果数组为空或者数组长度为0
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        //创建返回值，用来保存最大和
+        int maxSum = Integer.MIN_VALUE;
+        //创建临时变量保存部分元素的和
+        int sum = 0;
+        //循环遍历数组，对遍历到的元素加和，如果前面数组的和小于0，就抛弃前面的区间
+        //继续遍历，遇到负数就保存前面的最大和
+        for (int i = 0; i < array.length; i++) {
+            if (sum <= 0) {
+                sum = array[i];
+            } else {
+                sum += array[i];
+            }
+            if (sum > maxSum) {
+                maxSum = sum;
+            }
+            
+        }
+        return maxSum;
+    }
+}
