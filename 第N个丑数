@@ -29,3 +29,36 @@ public class Solution {
         return (number == 1);
     }
 }
+
+
+public class Solution {
+    public int GetUglyNumber_Solution(int index) {
+        //如果index为0，没有丑数，返回0
+        if (index == 0) return 0;
+        //创建一个长度为index的数组，来保存每一个丑数
+        int[] uglyNumbers = new int[index];
+        //创建临时变量保存下一个要放置丑数的下标
+        //第一个丑数为1，保存到数组中
+        uglyNumbers[0] = 1;
+        int curr = 1;
+        int multiple2 = 0;
+        int multiple3 = 0;
+        int multiple5 = 0;
+        //将三个变量的相应倍数的数都置为当前丑数，再继续计算后面
+        for (curr = 1; curr < index; curr++) {
+            uglyNumbers[curr] = minOfThree(uglyNumbers[multiple2] * 2, uglyNumbers[multiple3] * 3, uglyNumbers[multiple5] * 5);
+            if (uglyNumbers[curr] == uglyNumbers[multiple2] * 2) multiple2++;
+            if (uglyNumbers[curr] == uglyNumbers[multiple3] * 3) multiple3++;
+            if (uglyNumbers[curr] == uglyNumbers[multiple5] * 5) multiple5++;
+        }
+        int uglyOfIndex = uglyNumbers[curr - 1];
+        return uglyOfIndex;
+    }
+    
+    //判断三个数中的最小数
+    private static int minOfThree(int x, int y, int z) {
+        int min = (x < y) ? x : y;
+        min = (min < z) ? min : z;
+        return min;
+    }
+}
