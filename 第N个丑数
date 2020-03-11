@@ -1,0 +1,31 @@
+//逐个遍历
+public class Solution {
+    public int GetUglyNumber_Solution(int index) {
+        if (index == 0) return 0;
+        int number = 1;
+        int count = 1;
+        //每循环一次count+1，说明找到第count个丑数
+        while (count < index) {
+            if (isUglyNumber(number)) {
+                count++;
+            }
+            if (count == index) break;
+            number++;
+        }
+        return number;
+    }
+    
+    //判断一个数是不是丑数
+    private static boolean isUglyNumber(int number) {
+        while (number  % 2 == 0) {
+            number /= 2;
+        }
+        while (number % 3 == 0) {
+            number /=3;
+        }
+        while (number % 5 == 0) {
+            number /= 5;
+        }
+        return (number == 1);
+    }
+}
