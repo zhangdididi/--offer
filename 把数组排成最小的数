@@ -1,0 +1,33 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Solution {
+    public String PrintMinNumber(int [] numbers) {
+        //如果数组为空，或者长度为0，就抛出异常
+        if (numbers == null || numbers.length == 0) {
+            throw new RuntimeException("Tha array is empty!!!");
+        }
+        //为避免整型超出最大数的范围，先将整型数组转换为字符串数组
+        int lengthOfNumbers = numbers.length;
+        String[] strs = new String[lengthOfNumbers];
+        for (int i = 0; i < lengthOfNumbers; i++) {
+            strs[i] = String.valueOf(numbers[i]);
+        }
+        //然后对字符串数组根据拼接的大小来进行排序
+        Arrays.sort(strs, new Comparator<String>() {
+            //重写comparator接口的compare方法
+            //将拼接以后较小的字符串放在前面
+            public int compare(String s1, String s2) {
+                String splicingStr1 = s1 + s2;
+                String splicingStr2 = s2 + s1;
+                return splicingStr1.compareTo(splicingStr2);
+            }
+        });
+        //最后创建StringBuilder保存拼接后的字符串
+        StringBuilder resultOfStr = new StringBuilder("");
+        for (String string : strs) {
+            resultOfStr.append(string);
+        }
+        return resultOfStr.toString();
+    }
+}
