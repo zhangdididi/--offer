@@ -1,0 +1,57 @@
+public class Solution {
+    public int InversePairs(int [] array) {
+        //如果数组为空，或没有元素，就返回0
+        if (array == null || array.length == 0) {
+            return 0;
+        }
+        int length = array.length;
+        //创建辅助数组来保存排序后的元素
+        int[] helper = new int[length];
+        for (int i = 0; i < length; i++) {
+            helper[i] = array[i];
+        }
+        //count保存逆序对的次数
+        int count = merge(array, helper, 0, length - 1);
+        return count;
+    }
+    
+    private static int merge(int[] array, int[] helper, int left, int right) {
+        if (left == right) {
+            helper[left] = array[left];
+            return 0;
+        }
+        //length保存数组分隔后的长度
+        int mid = (right + left) / 2;
+        //依次计算左边数组逆序对数量和右边数组逆序对数量
+        int leftCount = merge(array, helper, left, mid) % 1000000007;
+        int rightCount = merge(helper, array, mid + 1, right) % 1000000007;
+        int i = mid, j = right;
+        //将排序的元素从后往前放入辅助数组
+        int helperIndex = right;
+        //count保存当前数组的逆序对数量
+        int count = 0;
+        while (i >= left && j > mid) {
+            if (array[i] > array[j]) {
+                helper[helperIndex--] = array[i--];
+                //右边数组最大的元素小于左边元素，说明其他元素全都小于左边当前元素
+                count += (j - mid);
+                if (count >= 1000000007) {
+                    count %= 1000000007;
+                }
+            } else {
+                helper[helperIndex--] = array[j--];
+            }
+        }
+        //将剩余元素置入辅助数组当中
+        for(; i >= left; i--) {
+            helper[helperIndex--] = array[i];
+        }
+        for(; j > mid; j--) {
+            helper[helperIndex--] = array[j];
+        }
+        for (int n = left; n <= right; n++) {
+            array[n] = helper[n];
+        }
+        return (leftCount + rightCount + count) % 1000000007;
+    }
+}
