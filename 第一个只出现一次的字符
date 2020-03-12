@@ -4,19 +4,17 @@
 如果没有则返回 -1（需要区分大小写）.
 */
 
-import java.util.Map;
 import java.util.HashMap;
-
 public class Solution {
     public int FirstNotRepeatingChar(String str) {
-        Map<Character, Integer> map = new HashMap<>();
-        char[] chars = str.toCharArray();
-        for (char c : str.toCharArray()) {
-            int count = map.getOrDefault(c, 0);
-            map.put(c, count + 1);
+        if (str == null || str.length() == 0) return -1;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            int count = map.getOrDefault(str.charAt(i), 0);
+            map.put(str.charAt(i), count + 1);
         }
-        for (int i = 0; i < chars.length; i++) {
-            if (map.get(chars[i]) == 1) {
+        for (int i = 0; i < str.length(); i++) {
+            if (map.get(str.charAt(i)) == 1) {
                 return i;
             }
         }
