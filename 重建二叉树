@@ -5,6 +5,7 @@
 */
 
 public class Solution {
+
     public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
         TreeNode root = reConstructHelper(pre, 0, pre.length - 1, in, 0, in.length - 1);
         return root;
