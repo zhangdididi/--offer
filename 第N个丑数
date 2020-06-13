@@ -15,6 +15,7 @@ public class Solution {
         return number;
     }
     
+
     //判断一个数是不是丑数
     private static boolean isUglyNumber(int number) {
         while (number  % 2 == 0) {
