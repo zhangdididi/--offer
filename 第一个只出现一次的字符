@@ -5,6 +5,7 @@
 */
 
 import java.util.HashMap;
+
 public class Solution {
     public int FirstNotRepeatingChar(String str) {
         if (str == null || str.length() == 0) return -1;
@@ -13,6 +14,7 @@ public class Solution {
             int count = map.getOrDefault(str.charAt(i), 0);
             map.put(str.charAt(i), count + 1);
         }
+
         for (int i = 0; i < str.length(); i++) {
             if (map.get(str.charAt(i)) == 1) {
                 return i;
