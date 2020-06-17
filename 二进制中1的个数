@@ -3,6 +3,7 @@
 其中负数用补码表示。
 */
 
+
 //右移n
 public int NumberOf1(int n) {
     int count = 0;
@@ -14,6 +15,7 @@ public int NumberOf1(int n) {
     }
     return count;
 }
+
 
 //左移1
 public int NumberOf1(int n) {
