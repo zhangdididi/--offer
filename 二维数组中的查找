@@ -19,6 +19,7 @@ public class Solution {
     }
 }
 
+
 //根据递增顺序
 public class Solution {
     public boolean Find(int target, int [][] array) {
