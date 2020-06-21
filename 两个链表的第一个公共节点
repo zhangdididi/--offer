@@ -7,7 +7,6 @@ public class ListNode {
     }
 }
 
-
 public class Solution {
     public ListNode FindFirstCommonNode(ListNode head1, ListNode head2) {
         //如果有一个为空，就返回null
