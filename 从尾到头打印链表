@@ -2,6 +2,7 @@
 输入一个链表，按链表从尾到头的顺序返回一个ArrayList。
 */
 
+
 //利用栈循环
 import java.util.ArrayList;
 import java.util.Stack;
@@ -20,6 +21,7 @@ public class Solution {
         return list;
     }
 }
+
 
 //递归
 import java.util.ArrayList;
