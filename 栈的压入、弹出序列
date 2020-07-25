@@ -22,3 +22,25 @@ public class Solution {
         return stack.isEmpty();
     }
 }
+
+
+
+import java.util.Stack;
+
+public class Solution {
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        if (pushA == null || popA == null || pushA.length != popA.length) {
+            return false;
+        }
+        int i = 0, j = 0;
+        Stack<Integer>  st = new Stack<>();
+        for (; i < pushA.length; i++) {
+            st.push(pushA[i]);
+            while (!st.empty() && popA[j] == st.peek()) {
+                st.pop();
+                j++;
+            }
+        }
+        return st.empty();
+    }
+}
