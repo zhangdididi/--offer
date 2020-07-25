@@ -46,3 +46,53 @@ public class Solution {
         return isHaveTree(root1.left, root2.left) && isHaveTree(root1.right, root2.right);
     }
 }
+
+
+
+
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if (root1 == null || root2 == null) return false;
+        //1.先找起始位置，先确定根结点是否相等，
+        boolean result = false;
+        if (root1.val == root2.val) {
+            //说明找到了起始位置
+            //指定两棵树各自的左右子树是否相等
+            result = isSameChild(root1, root2);
+        } 
+        if (!result) {
+            result = HasSubtree(root1.left, root2);
+        }
+        
+        if (!result) {
+            result = HasSubtree(root1.right, root2);
+        }
+        return result;
+    }
+    
+    public static boolean isSameChild(TreeNode begin,TreeNode beginSub) {
+        if (beginSub == null) {
+            return true;
+        }
+        if (begin == null) {
+            return false;
+        }
+        if (begin.val != beginSub.val) {
+            return false;
+        }
+        return isSameChild(begin.left, beginSub.left) && isSameChild(begin.right, beginSub.right);
+    }
+}
