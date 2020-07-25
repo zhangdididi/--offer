@@ -1,0 +1,42 @@
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    public ListNode deleteDuplication(ListNode pHead)
+    {
+        if (pHead == null) {
+            return pHead;
+        }
+        //傀儡节点
+        ListNode head = new ListNode(0);
+        head.next = pHead;
+        ListNode prev = head;
+        ListNode last = prev.next;
+        
+        while (last != null) {
+            //先找到重复结点的起始点
+            while (last.next != null && last.val != last.next.val) {
+                //两个节点不重复
+                prev = last;
+                last = last.next;
+            }
+            //确定重复区域
+            while (last.next != null && last.val == last.next.val) {
+                last = last.next;
+            }
+            //此时last指向最后一个重复结点
+            if (prev.next != last) {
+                prev.next = last.next;
+            }
+            last = last.next;
+        }
+        return head.next;
+    }
+}
