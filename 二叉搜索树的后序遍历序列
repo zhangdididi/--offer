@@ -42,3 +42,33 @@ public class Solution {
         return (left && right);
     }
 }
+
+
+
+public class Solution {
+    public boolean VerifySquenceOfBST(int [] sequence) {
+        if (sequence == null || sequence.length == 0) return false;
+        return VerifySquenceOfBSTHelper(sequence, 0, sequence.length - 1);
+    }
+    
+   public boolean VerifySquenceOfBSTHelper(int[] sequence, int start, int  end) {
+       if (start >= end) return true;
+       int root = sequence[end];//拿到根结点
+       int i = start;
+       //划分过程
+       while (i < end && sequence[i] < root) {
+           i++;
+       }
+       //i位置往后到end都是大于等于root的
+       //不符合就不是二叉搜索树
+       //检测过程
+       for (int j = i; j < end; j++) {
+           if (sequence[j] < root) {
+               return false;
+           }
+       }
+       
+       return VerifySquenceOfBSTHelper(sequence, start, i - 1) 
+           && VerifySquenceOfBSTHelper(sequence, i, end - 1);
+   }
+}
