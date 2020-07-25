@@ -42,3 +42,35 @@ public class Solution {
         return stackOfHelper.peek();
     }
 }
+
+
+
+import java.util.Stack;
+
+public class Solution {
+    private  Stack<Integer> dataStack = new Stack<>();//数据栈
+    private  Stack<Integer> minStack = new Stack<>();//辅助栈
+    
+    public void push(int node) {
+        if (minStack.empty() || minStack.peek() > node) {
+            minStack.push(node);
+        } else {
+            //再次插入栈顶元素
+            minStack.push(minStack.peek());
+        }
+        dataStack.push(node);
+    }
+    
+    public void pop() {
+        dataStack.pop();
+        minStack.pop();
+    }
+    
+    public int top() {
+        return dataStack.peek();
+    }
+    
+    public int min() {
+        return minStack.peek();
+    }
+}
