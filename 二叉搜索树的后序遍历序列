@@ -3,6 +3,7 @@
 如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。
 */
 
+
 import java.util.Arrays;
 public class Solution {
     public boolean VerifySquenceOfBST(int [] sequence) {
