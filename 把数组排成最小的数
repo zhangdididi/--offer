@@ -6,7 +6,6 @@
 
 import java.util.Arrays;
 import java.util.Comparator;
-
 public class Solution {
     public String PrintMinNumber(int [] numbers) {
         //如果数组为空，或者长度为0，就抛出异常
