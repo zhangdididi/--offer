@@ -52,7 +52,7 @@ public class Solution {
         if (root == null) return res;
         Queue<TreeNode> queue = new PriorityQueue<>();
         queue.offer(root);
-        while (queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             TreeNode node = queue.peek();
             queue.poll();
             res.add(node.val);
