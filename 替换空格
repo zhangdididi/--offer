@@ -19,7 +19,6 @@ public class Solution {
     }
 }
 
-
 //延长字符串长度
 public class Solution {
     public String replaceSpace(StringBuffer str) {
